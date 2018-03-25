@@ -2,7 +2,7 @@
 Description=Generate hosts file from leases file then reload dnsmasq
 
 [Path]
-PathChanged=/var/lib/misc/dnsmasq.leases
+PathModified=/var/lib/misc/dnsmasq.leases
 
 [Install]
 WantedBy=multi-user.target
