@@ -1,0 +1,7 @@
+[Unit]
+Description=Generate hosts file from leases file then reload dnsmasq
+
+[Service]
+Type=oneshot
+ExecStartPre=/bin/bash -c "/usr/bin/leases2hosts /var/lib/misc/dnsmasq.leases > /var/lib/misc/extend-hosts"
+ExecStart=/usr/bin/systemctl reload dnsmasq.service

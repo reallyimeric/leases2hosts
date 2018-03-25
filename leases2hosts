@@ -1,0 +1,27 @@
+#!/usr/bin/env node
+
+const { readFile } = require('fs')
+const { promisify } = require('util')
+
+const readFileAsync = promisify(readFile)
+
+function collector(entryParts) {
+    return [ entryParts[2], entryParts[3] ]
+}
+
+function constructor(entryParts) {
+    return entryParts.join(' ')
+}
+
+async function main() {
+    const string = await readFileAsync(process.argv[2], 'utf8')
+    const entryArray = string.split('\n')
+    const splitEntryArray = entryArray.map(entry => entry.split(' '))
+    const filteredEntryArray = splitEntryArray.map(collector)
+    const formedEntry = filteredEntryArray.map(constructor)
+    const formedString = formedEntry.join('\n')
+    console.log(formedString)
+    return 0
+}
+
+main()
