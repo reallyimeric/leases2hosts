@@ -14,14 +14,20 @@ function constructor(entryParts) {
 }
 
 async function main() {
-    const string = await readFileAsync(process.argv[2], 'utf8')
-    const entryArray = string.split('\n')
-    const splitEntryArray = entryArray.map(entry => entry.split(' '))
-    const filteredEntryArray = splitEntryArray.map(collector)
-    const formedEntry = filteredEntryArray.map(constructor)
-    const formedString = formedEntry.join('\n')
-    console.log(formedString)
-    return 0
+    try {
+        const string = await readFileAsync(process.argv[2], 'utf8')
+        const entryArray = string.split('\n')
+        const splitEntryArray = entryArray.map(entry => entry.split(' '))
+        const filteredEntryArray = splitEntryArray.map(collector)
+        const formedEntry = filteredEntryArray.map(constructor)
+        const formedString = formedEntry.join('\n')
+        console.log(formedString)
+        process.exit(0)
+    } catch (e) {
+        console.error(e.message)
+        // console.error('biubiubiu!')
+        process.exit(e.errno || -1)
+    }
 }
 
 main()
