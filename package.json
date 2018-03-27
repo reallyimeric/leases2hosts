@@ -1,0 +1,13 @@
+{
+  "name": "leases2hosts",
+  "version": "0.1.0",
+  "main": "index.js",
+  "repository": "git@github.com:reallyimeric/leases2hosts.git",
+  "author": "Eric Little <reallyimeric@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.9.0"
+  }
+}

@@ -6,7 +6,7 @@ const { promisify } = require('util')
 const readFileAsync = promisify(readFile)
 
 function collector(entryParts) {
-    return [ entryParts[2], entryParts[3] ]
+    return [entryParts[2], entryParts[3]]
 }
 
 function constructor(entryParts) {
