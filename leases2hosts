@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+const os = require('os')
 
 const { readFile } = require('fs')
 const { promisify } = require('util')
@@ -13,6 +14,13 @@ function constructor(entryParts) {
     return entryParts.join(' ')
 }
 
+function getSelf(ifname) {
+    const hostname = os.hostname()
+    const { address } = os.networkInterfaces()[ifname][0]
+    const pair = `${address} ${hostname}`
+    return pair
+}
+
 async function main() {
     try {
         const string = await readFileAsync(process.argv[2], 'utf8')
@@ -21,7 +29,7 @@ async function main() {
         const filteredEntryArray = splitEntryArray.map(collector)
         const formedEntry = filteredEntryArray.map(constructor)
         const formedString = formedEntry.join('\n')
-        console.log(formedString)
+        console.log(`${getSelf('lan')}\n${formedString}`)
         process.exit(0)
     } catch (e) {
         console.error(e.message)
